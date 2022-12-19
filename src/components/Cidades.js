@@ -3,7 +3,7 @@ import { fetchCityByState } from "../helpers/ibge";
 
 
 
-const Cidades = ({state, onChange = () => {}}) => {
+const Cidades = ({id, name, state, onChange =()=>{}}) => {
     const [cities, setCities] = useState([])
     useEffect(() => {
       fetchCityByState(state).then((cities) =>{
@@ -13,7 +13,7 @@ const Cidades = ({state, onChange = () => {}}) => {
 
     return (
        
-        <select id="city" name="city" onChange={onChange}>
+      <select id={id || name} name={name || id} onChange={onChange}>
          {cities.map((city) => {
             const {id, nome} = city;
             return (

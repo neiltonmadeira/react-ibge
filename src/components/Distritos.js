@@ -3,7 +3,7 @@ import { fetchDistrictByCity } from "../helpers/ibge";
 
 
 
-const Distritos = ({city, onChange = () => {}}) => {
+const Distritos = ({id, name, city, onChange =()=>{}}) => {
     const [districts, setDistricts] = useState([])
     useEffect(() => {
       fetchDistrictByCity(city).then((districts) =>{
@@ -13,20 +13,21 @@ const Distritos = ({city, onChange = () => {}}) => {
 
     return (
        
-      <div id="district" name="district" onChange={onChange}>
+      <div className="dis" id={id || name} name={name || id} onChange={onChange}>
       {districts.map((ds) => {
          
          return (
-          <div>
-           <strong>id: {ds.id}</strong>
+          <div key={id}>
+           
+           <strong>Id: {ds.id}</strong>
            <br></br>
-           <strong>nome: {ds.nome}</strong>
+           <strong>Nome: {ds.nome}</strong>
            <br></br>
            <strong>UF: {ds.municipio.microrregiao.mesorregiao.UF.sigla}</strong>
            <br></br>
-           <strong>microrregiao: {ds.municipio.microrregiao.nome}</strong>
+           <strong>Microrregiao: {ds.municipio.microrregiao.nome}</strong>
            <br></br>
-           <strong>mesorregiao: {ds.municipio.microrregiao.mesorregiao.nome}</strong>
+           <strong>Mesorregiao: {ds.municipio.microrregiao.mesorregiao.nome}</strong>
            
           
            </div>
